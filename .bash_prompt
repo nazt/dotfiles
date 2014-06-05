@@ -55,7 +55,7 @@ function parse_git_branch() {
 }
 
 #PS1_USER="\[${BOLD}\u@\[$GREEN\]\h \[$GREEN\]\[$RESET\]"
-PS1_USER="${ORANGE}\u@\h\[$RESET\]"
+PS1_USER="${ORANGE}\u${GREEN}@\h\[$RESET\]"
 PS1_PATH="\[$MAGENTA\]\w\$(parse_git_branch)\[$RESET\]"
 PS1_PROMPT="\[${BOLD}${ORANGE}\]\$\[$RESET\]"
 PS1_TIME="$WHITE[\@]"
