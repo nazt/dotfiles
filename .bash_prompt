@@ -60,6 +60,6 @@ PS1_PATH="\[$MAGENTA\]\w\$(parse_git_branch)\[$RESET\]"
 PS1_PROMPT="\[${BOLD}${ORANGE}\]\$\[$RESET\]"
 PS1_TIME="$WHITE[\@]"
 
-export PS1="${PS1_TIME} ${PS1_USER}\n${PS1_PATH} ${PS1_PROMPT} \[$RESET\]"
+export PS1="${PS1_TIME} ${PS1_USER} ${PS1_PATH} ${PS1_PROMPT} \[$RESET\]"
 #export PS1=$PS1
 export PS2="\[$ORANGE\]→ \[$RESET\]"
