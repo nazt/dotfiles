@@ -48,7 +48,7 @@ function parse_git_branch() {
 	if [ -n "${branch}" ]; then
 		[ "${branch}" == "HEAD" ] && local branch=$(git rev-parse --short HEAD 2>/dev/null)
 		local status=$(git status --porcelain 2>/dev/null)
-		echo -n " on ${PURPLE}${branch}"
+		echo -n " (${PURPLE}${branch})"
 		[ -n "${status}" ] && echo -n "*"
 	fi
 }
