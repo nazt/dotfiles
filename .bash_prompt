@@ -49,16 +49,20 @@ function parse_git_branch() {
 	if [ -n "${branch}" ]; then
 		[ "${branch}" == "HEAD" ] && local branch=$(git rev-parse --short HEAD 2>/dev/null)
 		local status=$(git status --porcelain 2>/dev/null)
-		echo -n " ${PURPLE}(${branch})"
+		echo -n "${PURPLE}(${branch})"
 		[ -n "${status}" ] && echo -n "*"
 	fi
 }
 
-PS1_USER="${ORANGE}\u${ORANGE}@\h\[$RESET\]"
-PS1_PATH="\[$MAGENTA\]\w\$(parse_git_branch)\[$RESET\]"
+ARROW=$'\\[\e[0m\\]\xe2\x86\x92'
+THR_ICON=$'\\[\e[31m\\]\xe2\x88\xb4'
+PS1_USER_HOST="${ORANGE}\u${ORANGE}@\h\[$RESET\]"
+PS1_USER="${ORANGE}\u\[$RESET\]"
+PS1_GIT_BRANCH="$(parse_git_branch)"
+PS1_PATH="\[$MAGENTA\]\w"
 PS1_PROMPT="\[${BOLD}${ORANGE}\]\$\[$RESET\]"
-PS1_TIME="$WHITE[\@]"
+PS1_TIME="[\@]"
 
-export PS1="${PS1_USER} ${PS1_PATH} ${PS1_PROMPT} \[$RESET\]"
+export PS1="${THR_ICON} ${PS1_TIME} ${PS1_PATH}\n${PS1_GIT_BRANCH} ${ARROW} \[$RESET\]"
 #export PS1=$PS1
 export PS2="\[$ORANGE\]→ \[$RESET\]"
