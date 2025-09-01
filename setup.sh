@@ -18,7 +18,10 @@ sudo apt-get install -y \
   wget \
   unzip \
   apt-transport-https \
-  lsb-release 
+  lsb-release \
+  tmux \
+  nodejs \
+  npm 
 
 # Install Azure CLI
 # echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ $(lsb_release -cs) main" | sudo tee -a /etc/apt/sources.list.d/azure-cli.list
@@ -31,6 +34,12 @@ wget https://download.jetbrains.com/fonts/JetBrainsMono-2.001.zip
 sudo unzip JetBrainsMono-2.001.zip -d /usr/share/fonts
 sudo fc-cache -f -v
 sudo apt-get install -y fonts-cascadia-code
+
+# Install Claude Code and Codex CLI
+echo "Installing AI coding assistants..."
+npm install -g @anthropic-ai/claude-code
+npm install -g @openai/codex
+echo "✓ Claude Code and Codex CLI installed"
 # Install & Configure Zsh
 if [ "$INSTALL_ZSH" = "true" ]
 then
@@ -50,3 +59,14 @@ fi
 sudo apt-get autoremove -y
 sudo apt-get autoremove -y
 sudo rm -rf /var/lib/apt/lists/*
+
+# Verify installations
+echo ""
+echo "=== Installation Summary ==="
+echo "✓ tmux $(tmux -V 2>/dev/null || echo 'not installed')"
+echo "✓ Claude Code $(claude --version 2>/dev/null || echo 'not installed')"
+echo "✓ Codex CLI $(codex --version 2>/dev/null || echo 'not installed')"
+echo "✓ Node.js $(node --version 2>/dev/null || echo 'not installed')"
+echo "============================"
+echo ""
+echo "Setup complete! Run 'source ~/.bashrc' to reload your shell configuration."
